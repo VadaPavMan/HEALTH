@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HealthFinder | Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+        }
+        .center-box {
+            max-width: 400px;
+            margin: 90px auto 0 auto;
+            padding: 40px 26px 46px 26px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 2px 15px rgba(60,90,140,0.11);
+            text-align: center;
+        }
+        .brand {
+            color: #1976D2;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+        }
+        h1 {
+            margin-bottom: 8px;
+            font-size: 2.2em;
+        }
+        p {
+            color: #325;
+            margin-bottom: 24px;
+        }
+        .nav-buttons {
+            margin-top: 12px;
+        }
+        .btn {
+            display: inline-block;
+            background: #1976D2;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 34px;
+            margin: 8px 7px;
+            border-radius: 5px;
+            box-shadow: 0 1px 6px rgba(22,30,80,0.09);
+            transition: background 0.22s, color 0.22s;
+        }
+        .btn:hover {
+            background: #0d3767;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-box">
+        <h1>Welcome to <span class="brand">HealthFinder</span></h1>
+        <p>Your central platform for hospitals, pharmacies, and smart health results.</p>
+        <div class="nav-buttons">
+            <a href="{{ url_for('users_bp.login') }}" class="btn">Login</a>
+            <a href="{{ url_for('users_bp.register') }}" class="btn">Register</a>
+            <a href="{{ url_for('users_bp.results') }}" class="btn">Results</a>
+            <a href="{{ url_for('users_bp.admin_dashboard') }}" class="btn">Admin Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

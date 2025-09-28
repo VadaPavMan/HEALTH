@@ -1,0 +1,32 @@
+# healthfinder/__init__.py
+from flask import Flask
+from .routes.users import users_bp # Correct import path for your users Blueprint
+# Import other necessary blueprints (e.g., stock_bp, search_bp)
+
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
+    
+    # 1. Configuration (Crucial for sessions/security)
+    app.config.from_mapping(
+        SECRET_KEY='dev', # Change this in a real app!
+        DATABASE='healthfinder.db',
+    )
+
+    # 2. Database Initialization (Add your init_db call here if needed)
+    from . import db
+    db.init_app(app) # Assuming you have a db module
+
+    # 3. Register Blueprints (Where your routes live)
+    # The login, logout, and registration routes must be defined in the users_bp Blueprint
+    from .routes.users import users_bp
+    app.register_blueprint(users_bp)
+    
+    # Ensure the root URL '/' (index) is defined, otherwise you'll get a 404 on the base URL
+    @app.route('/')
+    def index():
+        return 'Welcome to HealthFinder. Please <a href="/login">login</a>.'
+
+    return app
+
+# If you are NOT using an app factory pattern, your main application file 
+# should simply call app.run() on the app object.
